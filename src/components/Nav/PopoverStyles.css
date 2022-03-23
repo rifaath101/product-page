@@ -1,0 +1,12 @@
+.order-img {
+  border-radius: 4px;
+  height: 40px;
+  width: 40px;
+}
+
+@media (max-width: 1028px) {
+  .order-img {
+    height: 85px;
+    width: 85px;
+  }
+}

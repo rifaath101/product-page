@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './components/Nav/Navbar'
+import { createTheme, ThemeProvider, Grid } from '@material-ui/core'
+import ViewImage from './components/Main/ViewImage'
+import { ProductDescription } from './components/Main/ProductDescription'
+import { useMatchMedia } from './components/useMatchMedia'
+import Slider from './components/Nav/Slider'
+import { CountProvider } from './components/Store/CreateContext'
 
-function App() {
+export default function App() {
+  const isMobileResolution = useMatchMedia('(max-width:1024px)', true)
+  const theme = createTheme({
+    typography: {
+      fontFamily: ['Kumbh Sans', 'sans-serif'].join(','),
+    },
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <CountProvider>
+        <Navbar />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            {isMobileResolution ? <Slider /> : <ViewImage />}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <ProductDescription />
+          </Grid>
+        </Grid>
+      </CountProvider>
+    </ThemeProvider>
+  )
 }
-
-export default App;
