@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 import Navbar from './components/Nav/Navbar'
 import { createTheme, ThemeProvider, Grid } from '@material-ui/core'
 import ViewImage from './components/Main/ViewImage'
@@ -16,18 +17,20 @@ export default function App() {
   })
 
   return (
-    <ThemeProvider theme={theme}>
-      <CountProvider>
-        <Navbar />
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            {isMobileResolution ? <Slider /> : <ViewImage />}
+    <div className='app'>
+      <ThemeProvider theme={theme}>
+        <CountProvider>
+          <Navbar />
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              {isMobileResolution ? <Slider /> : <ViewImage />}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <ProductDescription />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <ProductDescription />
-          </Grid>
-        </Grid>
-      </CountProvider>
-    </ThemeProvider>
+        </CountProvider>
+      </ThemeProvider>
+    </div>
   )
 }
